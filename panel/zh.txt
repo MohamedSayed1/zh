@@ -1,0 +1,112 @@
+users {
+index {
+	table {
+		id 
+		name 
+		Groupe select 
+		status select 
+		note
+		station select 
+		fucilty 
+		educate level 
+		phone
+		parent phone 
+		row func. => edit , activate/ deactivate  
+	}
+} 
+	add {
+		groupe select 
+		station select 
+		status select
+		anothers all text 
+	}
+search {
+	id  
+	group 
+	station 
+}
+}
+-------------------------------------------------------------------------------
+term {
+	name 
+	start date 
+	end date 
+	status  select 
+	morning time 
+	
+}
+search {
+	start end date 
+	}
+row func {
+	تعديل 
+	اضافة اشتراك طالب  {
+			add {
+				term start end date name -  disabled
+				select user  select 2 
+				payment method  select 2
+				coast disabled
+			}
+		 
+		index {
+			term => term start end date name 
+			user 
+			payment method 
+			coast
+			user paymen cu.paid
+			row func {
+				edit 
+				add cash {
+				المدفوع text 
+				البافى - disabled
+				
+				}
+				
+			} 
+			search user id 
+		}
+	}
+}
+-------------------------------------------------------------------------------------
+Setup 
+---------------------------------
+payment method 
+name  text 
+price  text 
+---------------------------------------------------------
+stations  {
+	name 
+}
+---------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
