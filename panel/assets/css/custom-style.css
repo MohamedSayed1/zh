@@ -1,147 +1,180 @@
 .table-panel {
-    min-height: 650px;
+	min-height: 650px;
 }
 
 .btn-group.open .dropdown-toggle {
-    box-shadow: none;
+	box-shadow: none;
 }
 
 label {
-    padding-top: 6px;
+	padding-top: 6px;
 }
 
 .subviews {
-    overflow-x: hidden;
+	overflow-x: hidden;
 }
 
 td.center .dropdown-menu {
-    right: 0;
-    left: auto;
+	right: 0;
+	left: auto;
 }
 
 .tabs-left.tabbable {
-    min-height: 555px;
+	min-height: 555px;
 }
 
 .tabs-left .tab-content {
-    min-height: 555px;
+	min-height: 555px;
 }
 
 .pricing-table.fin .plan {
-    margin: 0;
+	margin: 0;
 }
 
 .pricing-table.fin .plan li.plan-price h3 {
-    padding: 15px 0;
+	padding: 15px 0;
 }
 
 .struc-container {
-    padding: 10px 25px;
+	padding: 10px 25px;
 }
 
 .course-header,
 .unit-header {
-    display: flex;
-    justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 /* .course-header h3 {} */
 
 .funcs-group {
-    display: flex;
+	display: flex;
 }
 
 .funcs-group .add-btn-link {
-    margin-top: 20px;
-    padding: 0 10px;
+	margin-top: 20px;
+	padding: 0 10px;
 }
 
 /* .funcs-group .add-btn-link a {} */
 
 .unit-header .funcs-group .add-btn-link {
-    margin-top: 5px;
-    display: block;
+	margin-top: 5px;
+	display: block;
 }
 
 .panel-title.kh-flex {
-    display: flex;
-    justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 /* .accordion .panel-heading .accordion-toggle {
 	background-color: transparent;
 } */
 .funcs-group .dropdown .dropdown-toggle {
-    margin: 10px;
+	margin: 10px;
 }
 
 .add-btn-unitlink {
-    text-align: center;
+	text-align: center;
 }
 
 .add-btn-unitlink a {
-    font-size: 15px;
-    display: block;
-    text-align: center;
+	font-size: 15px;
+	display: block;
+	text-align: center;
 }
 
 .add-btn-unitlink a span {
-    display: block;
+	display: block;
 }
 
 .inline-form {
-    max-height: 0;
-    overflow: hidden;
-    transition-property: all;
-    transition-duration: .5s;
-    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+	max-height: 0;
+	overflow: hidden;
+	transition-property: all;
+	transition-duration: .5s;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
 
 .inline-form.opened {
-    max-height: 500px;
-    /* approximate max height */
-    transition-timing-function: cubic-bezier(0.1, 0, 0, 0);
+	max-height: 500px;
+	/* approximate max height */
+	transition-timing-function: cubic-bezier(0.1, 0, 0, 0);
 }
 
 .inline-form.closed {
-    max-height: 0;
+	max-height: 0;
 
 }
 
 .inline-form1 {
-    max-height: 0;
-    overflow: hidden;
-    transition-property: all;
-    transition-duration: .5s;
-    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+	max-height: 0;
+	overflow: hidden;
+	transition-property: all;
+	transition-duration: .5s;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
 
 .inline-form1.opened {
-    max-height: 500px;
-    /* approximate max height */
-    transition-timing-function: cubic-bezier(0.1, 0, 0, 0);
+	max-height: 500px;
+	/* approximate max height */
+	transition-timing-function: cubic-bezier(0.1, 0, 0, 0);
 }
 
 .inline-form1.closed {
-    max-height: 0;
+	max-height: 0;
 }
 
 .pricing-table .plan li.plan-price {
-    background: #fff;
-    color: #8B91A0;
-    padding: 6px 20px;
+	background: #fff;
+	color: #8B91A0;
+	padding: 6px 20px;
 }
 
 .pricing-table .plan {
-    box-shadow: none;
+	box-shadow: none;
 }
 
 .app-icon {
-    border: none;
-    background: inherit;
+	border: none;
+	background: inherit;
 }
 
 .table-panel {
-    
-    overflow: scroll;
+	overflow: scroll;
+}
+
+
+.logo {
+	display: block;
+	overflow: hidden;
+	height: 110px;
+	padding: 10px;
+}
+
+.logo img {
+	display: inline-block;
+	margin: auto;
+	width: auto;
+}
+
+.logo span {
+	font-size: 20px;
+}
+
+.clear {
+	clear: both;
+}
+
+.navbar-brand>img {
+	display: inline-block;
+	margin-top: -15px;
+}
+
+.navbar-brand span {
+	font-size: 20px;
+	margin-top: -5px;
+	display: inline-block;
+	color: #333;
 }

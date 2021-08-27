@@ -63,7 +63,7 @@
 <div class="row">
     <div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
         <div class="logo">
-            <img src="{{asset('panel/assets/images/logo.png')}}">
+            <img src="{{asset('panel/assets/images/ZH.png')}}">
         </div>
         <!-- start: LOGIN BOX -->
         <div class="box-login" style="display: block;">
@@ -85,7 +85,7 @@
                 <fieldset>
                     <div class="form-group">
 							<span class="input-icon">
-								<input type="text" class="form-control" name="code" value="{{old('code')}}" placeholder="code">
+								<input type="text" class="form-control" name="code" value="{{old('code')}}" placeholder="ID">
 								<i class="fa fa-user"></i> </span>
                     </div>
                     <div class="form-group form-actions">

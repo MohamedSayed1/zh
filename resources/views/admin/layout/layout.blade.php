@@ -75,9 +75,9 @@
                     <i class="fa fa-bars"></i>
                 </a>
                 <!-- start: LOGO -->
-                <!--a class="navbar-brand" href="#">
-                    <img src="{{asset('panel/assets/images/logo.png')}}" alt="Rapido" />
-                </a-->
+                <a class="navbar-brand" href="#">
+                    <img src="{{asset('panel/assets/images/ZH.png')}}" alt="Rapido" />
+                </a>
                 <!-- end: LOGO -->
             </div>
             <div class="topbar-tools">
