@@ -11,4 +11,6 @@ class CheckinDateDaily extends Model
 
     protected $table ="checkin_date_daily";
     protected $primaryKey="daily_id";
+
+    
 }

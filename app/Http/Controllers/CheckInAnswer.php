@@ -8,33 +8,32 @@ use App\ZH\Services\DailyServices;
 use Illuminate\Http\Request;
 Use Alert;
 
-class CheckDateDaily extends Controller
+class CheckInAnswer extends Controller
 {
 
     private $dailySer;
 
     public function __construct()
     {
-       $this->dailySer = new DailyServices();
+        $this->dailySer = new DailyServices();
     }
 
     public function index()
     {
-        $checkDates = $this->dailySer->get();
+        $checkAnswers = $this->dailySer->getAnswers();
 
-
-        return view('admin/checkindate/index')
-            ->with('checkDates',$checkDates);
+        return view('admin/checkindate/checkindateanswer/index')
+            ->with('checkAnswers',$checkAnswers);
 
     }
 
 
     public function store(Request $request)
     {
-        if($this->dailySer->add($request->all()))
+        if($this->dailySer->addAnswer($request->all()))
         {
             Alert::success('Done', 'Successfully added');
-            return redirect('dashboard/check_in_daily');
+            return redirect('dashboard/check_in_answer');
         }
 
 

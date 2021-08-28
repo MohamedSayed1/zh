@@ -1,7 +1,7 @@
 @extends('admin.layout.index')
 
 @section('title')
-    Appointment
+    Answers of daily date
 @endsection
 
 @section('content')
@@ -43,7 +43,7 @@
         <div class="toolbar row">
             <div class="col-sm-6 hidden-xs">
                 <div class="page-header">
-                    <h1>Appointments <small>Add & Updated &amp; Details & Reports </small></h1>
+                    <h1>Answers of daily date <small>Index &amp; Details </small></h1>
                 </div>
             </div>
             <div class="col-sm-6 col-xs-12">
@@ -80,7 +80,7 @@
                         </a>
                     </li>
                     <li class="active">
-                        Appointments
+                        Answers of daily date
                     </li>
                 </ol>
             </div>
@@ -92,7 +92,7 @@
                 <!-- start: TEXT FIELDS PANEL -->
                 <div class="panel panel-white table-panel" style="zoom: 1;overflow: scroll;">
                     <div class="panel-heading">
-                        <h4 class="panel-title"> <span class="text-bold">Appointments</span></h4>
+                        <h4 class="panel-title"><span class="text-bold">Answers of daily date</span></h4>
                         <div class="panel-tools">
                             <div class="dropdown">
                                 <a data-toggle="dropdown"
@@ -104,7 +104,7 @@
                                     style="display: none;">
                                     <li>
                                         <a class="panel-collapse collapses" href="#"><i
-                                                    class="fa fa-angle-up"></i> <span>Collapse</span> </a>
+                                                class="fa fa-angle-up"></i> <span>Collapse</span> </a>
                                     </li>
                                     <li>
                                         <a class="panel-expand" href="#">
@@ -120,82 +120,43 @@
                     </div>
 
 
-
-
                     <!-- START: Add Daily  -->
-                    <div class="inline-form1 {{isset($errors) && count($errors) >0 ?'opened':'closed'}}" style="overflow: scroll">
+                    <div class="inline-form1 {{isset($errors) && count($errors) >0 ?'opened':'closed'}}"
+                         style="overflow: scroll">
                         <div class="col-md-11">
-                            <form method="post" action="{{url('dashboard/appointment')}}">
+                            <form method="post" action="{{url('dashboard/check_in_answer')}}">
 
                                 <div class="form-group">
                                     <div class="row">
                                         <label class="col-sm-2 control-label" for="">
-                                            Date
+                                            name
                                         </label>
                                         <div class="col-sm-4">
-                                            <input type="date" value="{{old('date')}}" name="date" class="form-control" required>
+                                            <input type="text" value="{{old('name')}}" name="name" class="form-control"
+                                                   required>
                                         </div>
-                                        @if ($errors->has('date'))
+                                        @if ($errors->has('name'))
                                             <span class="help-block">
-                                            <strong class="text-danger">{{ $errors->first('date') }}</strong>
+                                            <strong class="text-danger">{{ $errors->first('name') }}</strong>
                                         </span>
                                         @endif
-                                        <label class="col-sm-2 control-label" for="">
-                                            Time
-                                        </label>
-                                        <div class="col-sm-4">
-                                            <input type="time" value="{{old('time')}}" name="time" class="form-control" required>
-                                        </div>
-                                        @if ($errors->has('time'))
-                                            <span class="help-block">
-                                            <strong class="text-danger">{{ $errors->first('time') }}</strong>
-                                        </span>
-                                        @endif
-
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="row">
                                         <label class="col-sm-2 control-label" for="">
                                             Status
                                         </label>
                                         <div class="col-sm-4">
                                             <select class="form-control" name="status">
-                                                <option value="1" {{old('status')!= null && old('status')==1?'selected':' ' }} >
+                                                <option
+                                                    value="1" {{old('status')!= null && old('status')==1?'selected':' ' }} >
                                                     Active
                                                 </option>
-                                                <option value="0" {{old('status')!= null && old('status')==0?'selected':' ' }}>
-                                                   In Active
+                                                <option
+                                                    value="0" {{old('status')!= null && old('status')==0?'selected':' ' }}>
+                                                    In Active
                                                 </option>
                                             </select>
                                         </div>
 
-                                        <label class="col-sm-2 control-label" for="">
-                                            to Student
-                                        </label>
-                                        <div class="col-sm-4">
-                                            <select class="form-control" name="to_student">
-                                                <option value="1" {{old('to_student')!= null && old('to_student')==1?'selected':' ' }} >
-                                                    yes
-                                                </option>
-                                                <option value="0" {{old('to_student')!= null && old('to_student')==0?'selected':' ' }}>
-                                                    no
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <div class="row">
-                                        <label class="col-sm-2 control-label" for="">
-                                            repetition amount
-                                        </label>
-                                        <div class="col-sm-4">
-                                            <input type="number" name="count" placeholder="repetition amount"
-                                                   class="form-control" value="{{old('count')}}">
-                                        </div>
                                     </div>
                                 </div>
 
@@ -225,52 +186,53 @@
                             <div class="panel panel-white">
                                 <div class="panel-heading">
                                     <h5 class="panel-title">
-                                       </h5>
+                                    </h5>
                                 </div>
-                                    <div class="panel-body">
-                                        <table class="table table-hover table-striped">
-                                            <thead>
-                                            <tr>
-                                                <th>date</th>
-                                                <th>time</th>
-                                                <th>Status</th>
-                                                <th>To Student</th>
-                                                <th></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            @if(isset($appointments))
-                                                @foreach($appointments as $appointment)
-                                            <tr>
-                                                <td>{{$appointment->date}}</td>
-                                                <td>{{Carbon\Carbon::parse($appointment->time)->format('h:i A')}}</td>
-                                                <td>{{$appointment->status == 1 ?'Active' :'In Active'}}</td>
-                                                <td>{{$appointment->to_student == 1 ?'Yes' :'No'}}</td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <a href="{{url('dashboard/appointment/updated/'.$appointment->app_id)}}">
-                                                        <button class="btn btn-info">
-                                                            تعديل
-                                                        </button>
-                                                        </a>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-info">
-                                                            تقارير
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                                @endforeach
-                                            @endif
-                                            </tbody>
-                                        </table>
-                                        <ul class="pagination pagination-blue margin-bottom-10">
+                                <div class="panel-body">
+                                    <table class="table table-hover table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>name</th>
 
-                                            {{$appointments->links()}}
-                                        </ul>
+                                            <th>Status</th>
+                                            <th></th>
 
-                                    </div>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @if(isset($checkAnswers))
+                                            @foreach($checkAnswers as $checkAnswer)
+                                                <tr>
+                                                    <td>{{$checkAnswer->name}}</td>
+                                                    <td>{{$checkAnswer->status == 1 ?'Active' :'In Active'}}</td>
+
+                                                    <td>
+                                                        <div class="btn-group">
+{{--                                                            <a href="{{url('dashboard/appointment/updated/'.$checkDate->app_id)}}">--}}
+                                                            <a href="#">
+                                                                <button class="btn btn-info">
+                                                                    تعديل
+                                                                </button>
+                                                            </a>
+                                                        </div>
+                                                        {{--                                                    <div class="btn-group">--}}
+                                                        {{--                                                        <button class="btn btn-info">--}}
+                                                        {{--                                                            تقارير--}}
+                                                        {{--                                                        </button>--}}
+                                                        {{--                                                    </div>--}}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
+                                        </tbody>
+                                    </table>
+                                    <ul class="pagination pagination-blue margin-bottom-10">
+
+
+                                        {{$checkAnswers ? $checkAnswers->links():''}}
+                                    </ul>
+
+                                </div>
 
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 @extends('admin.layout.index')
 
 @section('title')
-    Appointment
+    Appointment - updated
 @endsection
 
 @section('content')
@@ -43,7 +43,7 @@
         <div class="toolbar row">
             <div class="col-sm-6 hidden-xs">
                 <div class="page-header">
-                    <h1>Appointments <small>Add & Updated &amp; Details & Reports </small></h1>
+                    <h1>Appointments <small>Updated</small></h1>
                 </div>
             </div>
             <div class="col-sm-6 col-xs-12">
@@ -58,8 +58,8 @@
                     <ul class="nav navbar-right">
                         <!-- start: TO-DO DROPDOWN -->
                         <li class="dropdown">
-                            <a class="inline-open" href="#addDaily">
-                                <i class="fa fa-plus"></i> Add
+                            <a href="{{url('dashboard/appointment')}}">
+                                <i class="fa fa-chevron-left"></i> BACK
                             </a>
                         </li>
 
@@ -75,12 +75,12 @@
             <div class="col-md-12">
                 <ol class="breadcrumb">
                     <li>
-                        <a href="Index.html">
+                        <a href="#">
                             Home
                         </a>
                     </li>
                     <li class="active">
-                        Appointments
+                        Appointments - updated
                     </li>
                 </ol>
             </div>
@@ -90,7 +90,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <!-- start: TEXT FIELDS PANEL -->
-                <div class="panel panel-white table-panel" style="zoom: 1;overflow: scroll;">
+                <div class="panel panel-white table-panel" style="zoom: 1;overflow: scroll">
                     <div class="panel-heading">
                         <h4 class="panel-title"> <span class="text-bold">Appointments</span></h4>
                         <div class="panel-tools">
@@ -119,13 +119,10 @@
                         </div>
                     </div>
 
-
-
-
                     <!-- START: Add Daily  -->
-                    <div class="inline-form1 {{isset($errors) && count($errors) >0 ?'opened':'closed'}}" style="overflow: scroll">
+                    <div class="inline-form1 opened " style="overflow: scroll">
                         <div class="col-md-11">
-                            <form method="post" action="{{url('dashboard/appointment')}}">
+                            <form method="post" action="{{url('dashboard/appointment/updated')}}">
 
                                 <div class="form-group">
                                     <div class="row">
@@ -133,7 +130,7 @@
                                             Date
                                         </label>
                                         <div class="col-sm-4">
-                                            <input type="date" value="{{old('date')}}" name="date" class="form-control" required>
+                                            <input type="date" value="{{old('date')!=null ?old('date'):$app->date}}" name="date" class="form-control" required>
                                         </div>
                                         @if ($errors->has('date'))
                                             <span class="help-block">
@@ -144,13 +141,14 @@
                                             Time
                                         </label>
                                         <div class="col-sm-4">
-                                            <input type="time" value="{{old('time')}}" name="time" class="form-control" required>
-                                        </div>
-                                        @if ($errors->has('time'))
-                                            <span class="help-block">
+                                            <input type="time" value="{{old('time')!=null ?old('time'):$app->time}}" name="time" class="form-control" required>
+                                            @if ($errors->has('time'))
+                                                <span class="help-block">
                                             <strong class="text-danger">{{ $errors->first('time') }}</strong>
                                         </span>
-                                        @endif
+                                            @endif
+
+                                        </div>
 
                                     </div>
                                 </div>
@@ -162,11 +160,24 @@
                                         </label>
                                         <div class="col-sm-4">
                                             <select class="form-control" name="status">
-                                                <option value="1" {{old('status')!= null && old('status')==1?'selected':' ' }} >
+                                                <option value="1"
+                                                        @if(old('status')!= null)
+                                                        {{old('status')==1?'selected':' ' }}
+                                                        @else
+                                                            {{$app->status  == 1?'selected':' '  }}
+                                                        @endif
+
+                                                >
                                                     Active
                                                 </option>
-                                                <option value="0" {{old('status')!= null && old('status')==0?'selected':' ' }}>
-                                                   In Active
+                                                <option value="0"
+                                                @if(old('status')!= null)
+                                                    {{old('status')==0?'selected':' ' }}
+                                                        @else
+                                                    {{$app->status  == 0?'selected':' '  }}
+                                                        @endif
+                                                >
+                                                    In Active
                                                 </option>
                                             </select>
                                         </div>
@@ -176,10 +187,24 @@
                                         </label>
                                         <div class="col-sm-4">
                                             <select class="form-control" name="to_student">
-                                                <option value="1" {{old('to_student')!= null && old('to_student')==1?'selected':' ' }} >
+                                                <option value="1"
+                                                @if(old('to_student')!= null)
+                                                    {{old('to_student')==1?'selected':' ' }}
+                                                        @else
+                                                    {{$app->to_student  == 1?'selected':' '  }}
+                                                        @endif
+
+                                                >
                                                     yes
                                                 </option>
-                                                <option value="0" {{old('to_student')!= null && old('to_student')==0?'selected':' ' }}>
+                                                <option value="0"
+                                                @if(old('to_student')!= null)
+                                                    {{old('to_student')==0?'selected':' ' }}
+                                                        @else
+                                                    {{$app->to_student  == 0?'selected':' '  }}
+                                                        @endif
+
+                                                >
                                                     no
                                                 </option>
                                             </select>
@@ -187,20 +212,9 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <div class="row">
-                                        <label class="col-sm-2 control-label" for="">
-                                            repetition amount
-                                        </label>
-                                        <div class="col-sm-4">
-                                            <input type="number" name="count" placeholder="repetition amount"
-                                                   class="form-control" value="{{old('count')}}">
-                                        </div>
-                                    </div>
-                                </div>
-
 
                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                <input type="hidden" name="id" value="{{$app->app_id}}">
 
                                 <div class="form-group ">
                                     <div class="row">
@@ -217,66 +231,9 @@
                         </div>
                     </div>
 
-
                     <!-- START: Daily Index ACCORDION -->
                     <!-- start: ACCORDION PANEL -->
-                    <div>
-                        <div class="panel-group accordion" id="accordion">
-                            <div class="panel panel-white">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                       </h5>
-                                </div>
-                                    <div class="panel-body">
-                                        <table class="table table-hover table-striped">
-                                            <thead>
-                                            <tr>
-                                                <th>date</th>
-                                                <th>time</th>
-                                                <th>Status</th>
-                                                <th>To Student</th>
-                                                <th></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            @if(isset($appointments))
-                                                @foreach($appointments as $appointment)
-                                            <tr>
-                                                <td>{{$appointment->date}}</td>
-                                                <td>{{Carbon\Carbon::parse($appointment->time)->format('h:i A')}}</td>
-                                                <td>{{$appointment->status == 1 ?'Active' :'In Active'}}</td>
-                                                <td>{{$appointment->to_student == 1 ?'Yes' :'No'}}</td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <a href="{{url('dashboard/appointment/updated/'.$appointment->app_id)}}">
-                                                        <button class="btn btn-info">
-                                                            تعديل
-                                                        </button>
-                                                        </a>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-info">
-                                                            تقارير
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                                @endforeach
-                                            @endif
-                                            </tbody>
-                                        </table>
-                                        <ul class="pagination pagination-blue margin-bottom-10">
-
-                                            {{$appointments->links()}}
-                                        </ul>
-
-                                    </div>
-
-                            </div>
-                        </div>
-                    </div>
                     <!-- end: ACCORDION PANEL -->
-
                 </div>
             </div>
             <!-- end: TEXT FIELDS PANEL -->

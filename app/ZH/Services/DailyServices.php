@@ -23,6 +23,7 @@ class DailyServices extends Services
         $rules = [
             'date' => 'required|date|unique:checkin_date_daily,date',
             'status' => 'required|numeric',
+            'time' => 'required|date_format:H:i',
         ];
 
         $validator = Validator::make($data, $rules);
@@ -91,4 +92,34 @@ class DailyServices extends Services
     {
         return $this->dailyRepo->get();
     }
+
+    //******************* answer date daily ************************/
+    public function getAnswers()
+    {
+        return $this->dailyRepo->getAnswers();
+    }
+
+    public function addAnswer($data)
+    {
+        $rules = [
+            'name' => 'required|unique:checkin_setup,name',
+            'status' => 'required|numeric',
+
+        ];
+
+        $validator = Validator::make($data, $rules);
+
+        if ($validator->fails()) {
+            $this->setError($validator->errors());
+            return false;
+        }
+
+        if ($this->dailyRepo->addAnswer($data)) {
+            return true;
+        }
+
+        $this->setError(['ooh ..! Please try again']);
+        return false;
+    }
+
 }

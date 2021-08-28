@@ -71,6 +71,18 @@
                                 <span class="title"> stations </span>
                             </a>
                         </li>
+                        <li class="{{Request::is('dashboard/check_in_daily*') ?'active open' :' '}}">
+                            <a href="{{url('dashboard/check_in_daily')}}">
+                                <i class="fa fa-bus"></i>
+                                <span class="title"> daily date  </span>
+                            </a>
+                        </li>
+                        <li class="{{Request::is('dashboard/check_in_answer*') ?'active open' :' '}}">
+                            <a href="{{url('dashboard/check_in_answer')}}">
+                                <i class="fa fa-bus"></i>
+                                <span class="title"> daily answers  </span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 

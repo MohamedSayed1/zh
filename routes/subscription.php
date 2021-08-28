@@ -25,7 +25,8 @@ Route::prefix('/dashboard/subscribes')->middleware(['CheckAuth', 'CheckGroup'])-
     Route::get('/cost/{id?}', 'SubscribeController@getCost')->name('.cost');
 
 
-    //search
+
+
 
 });
 

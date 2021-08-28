@@ -38,6 +38,23 @@ Route::group(['middleware' => ['CheckAuth', 'CheckGroup']], function () {
 
         Route::delete('/delete/{id?}', 'PaymentSettingsController@destroy')->name('.destroy');
     });
+
+   // check in Date Daily
+
+    Route::prefix('/dashboard/check_in_daily')->name('check_in_daily')->group(function () {
+
+        Route::get('/', 'CheckDateDaily@index');
+        Route::post('/', 'CheckDateDaily@store')->name('.store');
+
+    });
+
+     Route::prefix('/dashboard/check_in_answer')->name('check_in_answer')->group(function () {
+
+         Route::get('/', 'CheckInAnswer@index');
+         Route::post('/', 'CheckInAnswer@store')->name('.store');
+
+     });
+
 });
 
 
