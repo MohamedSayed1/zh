@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCheckInStudentTable extends Migration
+class CreateTermsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateCheckInStudentTable extends Migration
      */
     public function up()
     {
-        Schema::create('check_in_student', function (Blueprint $table) {
-            $table->increments('check_id');
-            $table->integer('setup_id')->nullable();
-            $table->integer('daily_id')->nullable();
-            $table->integer('user_id')->nullable();
+        Schema::create('terms', function (Blueprint $table) {
+            $table->increments('term_id');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->string('name', 300)->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateCheckInStudentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('check_in_student');
+        Schema::dropIfExists('terms');
     }
 }

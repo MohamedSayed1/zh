@@ -23,8 +23,7 @@ class CreateMoveAppointmentTable extends Migration
             $table->integer('count_bus')->nullable();
             $table->string('numper_bus', 100)->nullable();
             $table->integer('number_pass')->nullable();
-            $table->timestamp('created-at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
         });
     }
 

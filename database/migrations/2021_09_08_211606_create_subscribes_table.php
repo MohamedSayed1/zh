@@ -18,8 +18,13 @@ class CreateSubscribesTable extends Migration
             $table->unsignedInteger('user_id')->index('subscribes_user_id_foreign');
             $table->unsignedInteger('term_id')->index('subscribes_term_id_foreign');
             $table->unsignedInteger('payment_id')->index('subscribes_payment_id_foreign');
-            $table->double('total')->nullable();
-            $table->double('paid')->nullable();
+            $table->double('total');
+            $table->double('paid')->default(0);
+            $table->date('next_payment_date')->nullable();
+            $table->double('unpaid')->nullable();
+            $table->string('paid_percentage')->nullable();
+            $table->unsignedInteger('created_by')->nullable()->index('subscribes_created_by_foreign');
+            $table->tinyInteger('status')->default(1);
             $table->text('note')->nullable();
             $table->timestamps();
         });

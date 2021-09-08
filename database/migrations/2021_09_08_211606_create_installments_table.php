@@ -16,7 +16,8 @@ class CreateInstallmentsTable extends Migration
         Schema::create('installments', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('subscribe_id')->index('installments_subscribe_id_foreign');
-            $table->double('pay_debt')->nullable();
+            $table->double('pay_debt')->default(0);
+            $table->unsignedInteger('created_by')->nullable()->index('installments_created_by_foreign');
             $table->timestamps();
         });
     }
