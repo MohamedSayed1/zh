@@ -23,8 +23,8 @@ class MovedServices extends Services
     {
         $rules = [
             'app_id' => 'required|numeric',
-            'super_id' => 'nullable|numeric',
-            'deriver_id' => 'required|numeric',
+            'super_id' => 'required|numeric',
+            'deriver_id' => 'nullable|numeric',
             'count_bus' => 'required|numeric',
             'numper_bus' => 'required|max:80',
         ];
@@ -104,13 +104,8 @@ class MovedServices extends Services
         return false;
     }
 
-    public function getItem($app_id,$me)
+    public function getItem($app_id)
     {
-        if($me == 5)
             return $this->movedRepo->getItem($app_id);
-        elseif ($me == 4)
-            return $this->movedRepo->getitemDervices($app_id,$me);
-        else
-            return $this->movedRepo->getitemSuper($app_id,$me);
     }
 }

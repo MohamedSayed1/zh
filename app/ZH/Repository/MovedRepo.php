@@ -22,7 +22,7 @@ class MovedRepo
         $this->moved->type = 'wait';
         $this->moved->date = date('Y-m-d');
         $this->moved->sper_id = isset($data['super_id'])?$data['super_id']:null;
-        $this->moved->deriver_id = $data['deriver_id'];
+        $this->moved->deriver_id = isset($data['deriver_id'])?$data['deriver_id']:null;
         $this->moved->count_bus = $data['count_bus'];
         $this->moved->numper_bus = $data['numper_bus'];
 

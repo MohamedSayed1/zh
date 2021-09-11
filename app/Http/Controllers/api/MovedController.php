@@ -23,7 +23,7 @@ class MovedController extends Controller
 
    public function index($app_id = 0)
    {
-       $data = $this->moved->getItem($app_id,auth()->user()->group_id);
+       $data = $this->moved->getItem($app_id);
 
        return $this->apiResponse(200,'Appointment Item',null,$data);
    }

@@ -5,6 +5,7 @@ namespace App\ZH\Repository;
 
 
 use App\ZH\Model\Appointment;
+use Carbon\Carbon;
 
 class AppointmentRepo
 {
@@ -24,6 +25,7 @@ class AppointmentRepo
     {
         $add = new Appointment();
         $add->date = $data['date'];
+        $add->time = $data['time'];
         $add->time = $data['time'];
         $add->status = $data['status'];
         $add->to_student = $data['to_student'];
@@ -80,6 +82,6 @@ class AppointmentRepo
 
     public function get()
     {
-        return $this->appoint->orderBy('app_id', 'desc')->paginate(10);
+        return $this->appoint->whereBetween('date', [Carbon::now()->startOfWeek(6), Carbon::now()->endOfWeek(5)])->orderBy('date', 'asc')->paginate(10);
     }
 }

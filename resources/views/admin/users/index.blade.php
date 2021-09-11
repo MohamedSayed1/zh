@@ -213,7 +213,7 @@
                             <tr>
                                 <td>{{$user->code}}</td>
                                 <td>{{$user->name}}</td>
-                                <td>{{$user->getGroup->name}}</td>
+                                <td>{{$user->getStations !=null?$user->getStations->name:''}}</td>
                                 <td>{{$user->is_active == 1 ?'Activate' :'unActive' }} </td>
                                 <td>{{$user->getStations->name}}</td>
                                 <td>{{$user->faculty}}</td>

@@ -30,7 +30,7 @@ Route::group([
 ], function () {
 
     Route::post('login', 'LoginApi@login');
-
+    Route::get('help', 'HelpApi@help');
 
 });
 
@@ -43,9 +43,12 @@ Route::group(['namespace'=>'api', 'middleware'  => ['api','jwt.token']], functio
     Route::post('refresh', 'LoginApi@refresh');
     Route::post('me', 'LoginApi@me');
 
+
+
+
     Route::prefix('appointment')->group(function () {
         Route::post('/', 'AppointmentApi@index');
-        Route::post('/item/{id?}', 'MovedController@index');
+        Route::get('/item/{id?}', 'MovedController@index');
         Route::post('/item/send/add', 'MovedController@add');
         Route::get('/item/send/updated/type/{id?}', 'MovedController@updatedType');
         Route::post('/item/send/updated', 'MovedController@updated');

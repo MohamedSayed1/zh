@@ -4,6 +4,7 @@
 namespace App\ZH\Services;
 
 
+use App\ZH\Model\Term;
 use App\ZH\Repository\AppointmentRepo;
 use App\ZH\Services;
 
@@ -29,30 +30,38 @@ class AppointmentServices extends Services
 
     public function add($data)
     {
-        $rules = [
-            'date' => 'required|date|',
-            'time' => ['required', 'date_format:H:i',
-                Rule::unique('appointment', 'time')->where('date', $data['date'])],
-            'status' => 'required',
-            'to_student' => 'required',
+        if($trim_id = $this->checkTirm())
+        {
+            $data['term'] = $trim_id;
+            $rules = [
+                'date' => 'required|date|',
+                'time' => ['required', 'date_format:H:i',
+                    Rule::unique('appointment', 'time')->where('date', $data['date'])],
+                'status' => 'required',
+                'to_student' => 'required',
 
-        ];
-        $validator = Validator::make($data, $rules);
+            ];
+            $validator = Validator::make($data, $rules);
 
-        if ($validator->fails()) {
-            $this->setError($validator->errors());
+            if ($validator->fails()) {
+                $this->setError($validator->errors());
+                return false;
+            }
+
+
+            if ($this->appoint->add($data)) {
+                // check Count if > 0
+                $this->Countadd($data);
+                return true;
+            }
+
+            $this->setError(['ooh ..! Please try again']);
             return false;
         }
 
-
-        if ($this->appoint->add($data)) {
-            // check Count if > 0
-            $this->Countadd($data);
-            return true;
-        }
-
-        $this->setError(['ooh ..! Please try again']);
+        $this->setError(['ooh ..! Please add trim first :(']);
         return false;
+
     }
 
 
@@ -65,8 +74,17 @@ class AppointmentServices extends Services
             for ($i = 0; $i < $data['count']; $i++) {
                 $new = $i == 0 ? $date : date('Y-m-d', strtotime($new . '+ 1 days'));
                 $data['date'] = $new;
-                $this->appoint->add($data);
-
+                // make valid date :)
+                $rules = [
+                    'date' => 'required|date|',
+                    'time' => ['required', 'date_format:H:i',
+                        Rule::unique('appointment', 'time')->where('date', $data['date'])],
+                ];
+                $validator = Validator::make($data, $rules);
+                // valid
+                if (!$validator->fails()) {
+                    $this->appoint->add($data);
+                }
             }
 
             return true;
@@ -137,6 +155,20 @@ class AppointmentServices extends Services
 
         return $this->appoint->getByDateAll($date);
 
+
+    }
+
+    public function checkTirm()
+    {
+        // get tirm
+
+        $tr = Term::where('status','1')->first();
+
+        if(!empty($tr))
+            return $tr->term_id;
+
+
+        return false;
 
     }
 }
